@@ -8,3 +8,11 @@ export const addUser = (data,callback) => {
 
 	callback(true);
 };
+
+export const deleteUser = (userId,callback) => {
+	store.dispatch({
+	    type: 'DELETE_USER',
+	    payload: { "id": userId}
+	  });
+	callback(true);
+};

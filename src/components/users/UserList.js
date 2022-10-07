@@ -8,6 +8,7 @@ import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import Button from 'react-bootstrap/Button';
 import EditUser from "./EditUser";
+import { deleteUser as deleteAction } from "../../store/actions/UserAction";
 
 function UserList({ users }) {
   const [page, setPage] = useState(1);
@@ -85,12 +86,10 @@ function UserList({ users }) {
   }
   const deleteUser = (id) => {
     // delete users
-    const indexOfObject = users.findIndex(object => {
-      return object.id === id;
+    deleteAction(id,() => {
+      loadData(1);
+      NotificationManager.success('User deleted successfully!', 'Success');
     });
-    users.splice(indexOfObject, 1);
-    loadData(1);
-    NotificationManager.success('User deleted successfully!', 'Success');
   }
   return (
       <>

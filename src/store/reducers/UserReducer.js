@@ -86,9 +86,15 @@ const UserReducer = (state = initialstate, action) => {
       return {
         users: [action.payload, ...state.users]
       };
-    case "UPDATE_USER":
-      return {
-        users: action.payload
+    case "DELETE_USER":
+      // delete users
+      const allusers = state.users;
+      const indexOfObject = allusers.findIndex(object => {
+        return object.id === action.payload.id;
+      });
+      allusers.splice(indexOfObject, 1);
+       return {
+       users: allusers
       };
     default:
       return state;
