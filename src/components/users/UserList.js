@@ -9,18 +9,21 @@ import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 import Button from 'react-bootstrap/Button';
 import EditUser from "./EditUser";
 
-function UserList({ users, totalRecords }) {
+function UserList({ users }) {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(2);
+  const [totalRecords, setTotalRecords] = useState(0);
+  const [limit, setLimit] = useState(5);
   const [userData, setUserData] = useState([]);
   const [searchVal, setSearchVal] = useState("");
 
   const [modalShow, setModalShow] = useState(false);
   const [editUserDetail, setEditUserDetail] = useState({});
   const handleEditModalClose = (updated=false) => { 
+    // close edit modal
     loadData(1);
     setModalShow(false); 
   }
+  // open edit modal
   const handleEditModalShow = () => setModalShow(true);
 
   useEffect(() => {
@@ -28,12 +31,14 @@ function UserList({ users, totalRecords }) {
   },[users, searchVal]);
 
   const loadData = (page) =>{
+    // get user data based on search and pagination
       setPage(page);
       if(searchVal != ""){
         users = users.filter((ele) => {
           return (ele.name.toLowerCase().includes(searchVal) || ele.lastname.toLowerCase().includes(searchVal) || ele.email.toLowerCase().includes(searchVal));
         });
       }
+      setTotalRecords(users.length);
       setUserData(users.slice((page-1) * limit, ((page -1) + 1) * limit));
       // axios
       //     .get(`https://reqres.in/api/users?page=`+page)
@@ -50,9 +55,11 @@ function UserList({ users, totalRecords }) {
 
   }
   const getPaginatedData = (page) => {
+    // get data on click of pagination link
     loadData(page);
   }
   const handleEditUser = (userId) => {
+    // get user details to edit
     const edituser  = users.filter(object => {
         return object.id === userId;
     });
@@ -60,6 +67,7 @@ function UserList({ users, totalRecords }) {
     setModalShow(true);
   }
   const confirmDeleteUser = (id) => {
+    // confirmation dialog for delete user
     confirmAlert({
       title: 'Confirm',
       message: 'Are you sure to delete this user ?',
@@ -76,6 +84,7 @@ function UserList({ users, totalRecords }) {
     });
   }
   const deleteUser = (id) => {
+    // delete users
     const indexOfObject = users.findIndex(object => {
       return object.id === id;
     });
@@ -110,7 +119,7 @@ function UserList({ users, totalRecords }) {
             <tbody>
               { userData.map((user,index) => (
                   <tr className='table table-light' key={index*page}>
-                    <td>{index + 1}</td>
+                    <td>{ (page - 1) * limit + index + 1 }</td>
                     <td>{user.name}</td>
                     <td>{user.lastname}</td>
                     <td>{user.email}</td>
@@ -125,16 +134,17 @@ function UserList({ users, totalRecords }) {
                   </tr>
                 )
               )}
-              {users.length <=0 && 
-                <tr><td colspan="5" align="center">No users exist</td></tr>
+              {userData.length <=0 && 
+                <tr><td colspan="5" align="center" className="font-weight-bold">No users exist</td></tr>
               }
             </tbody>
           </table>
-          {users.length > limit &&
+          {userData.length > 0 && users.length > limit &&
               <PaginationComponent
                   getAllData={getPaginatedData}
-                  totalRecords={users.length}
-                  itemsCountPerPage = {limit} />
+                  totalRecords={totalRecords}
+                  itemsCountPerPage = {limit} 
+                  activePage={page} />
           }
         </div>
     </>

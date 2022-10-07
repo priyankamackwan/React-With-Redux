@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pagination from "react-js-pagination";
 import PropTypes from "prop-types";
+import { isEqual } from "lodash";
 
 class PaginationComponent extends Component {
   constructor(props) {
@@ -17,6 +18,21 @@ class PaginationComponent extends Component {
       totalRecords: nextProps ? nextProps.totalRecords : this.props.totalRecords
     });
   };
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(!isEqual(prevProps.activePage, this.props.activePage)){
+      this.setState({
+        activePage: this.props.activePage
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return !isEqual(nextProps.activePage, this.props.activePage) 
+    || !isEqual(nextState.totalRecords, this.state.totalRecords) 
+    || !isEqual(nextState.activePage, this.state.activePage) 
+    || !isEqual(nextState.limit, this.state.limit);
+  }
 
   //Handle Page Change
   handlePageChange = page => {

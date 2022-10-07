@@ -2,22 +2,22 @@ const initialstate = {
   totalUsers: 5,
   users: [{
     'id':'1',
-    'name':'Hinall',
+    'name':'Hinal',
     'lastname': 'Patel',
     'email': 'hinal@gmail.com',
     'phone': '2323232323',
     'gender': 'female'
   },{
     'id':'2',
-    'name':'Vidhi',
-    'lastname': 'Patel',
-    'email': 'vidhi@gmail.com',
-    'phone': '2323232323',
-    'gender': 'female'
+    'name':'Nick',
+    'lastname': 'Thakkar',
+    'email': 'nick45@gmail.com',
+    'phone': '9328174323',
+    'gender': 'male'
   },{
     'id':'3',
     'name':'Sejal',
-    'lastname': 'Patel',
+    'lastname': 'Soni',
     'email': 'sejal@gmail.com',
     'phone': '2323232323',
     'gender': 'female'
@@ -33,8 +33,50 @@ const initialstate = {
     'name':'Diya',
     'lastname': 'Patel',
     'email': 'diya@gmail.com',
+    'phone': '9485275413',
+    'gender': 'female'
+  },{
+    'id':'6',
+    'name':'Aesha',
+    'lastname': 'Shah',
+    'email': 'aesha123@gmail.com',
+    'phone': '9323232323',
+    'gender': 'female'
+  },{
+    'id':'7',
+    'name':'Harsh',
+    'lastname': 'Mistry',
+    'email': 'harsh345@gmail.com',
+    'phone': '9328574323',
+    'gender': 'male'
+  },{
+    'id':'8',
+    'name':'Vidhi',
+    'lastname': 'Patel',
+    'email': 'vidhi@gmail.com',
     'phone': '2323232323',
     'gender': 'female'
+  },{
+    'id':'9',
+    'name':'Vihan',
+    'lastname': 'Desai',
+    'email': 'vihan345@gmail.com',
+    'phone': '9328474323',
+    'gender': 'male'
+  },{
+    'id':'10',
+    'name':'Nick',
+    'lastname': 'Thakkar',
+    'email': 'nick45@gmail.com',
+    'phone': '9328174323',
+    'gender': 'male'
+  },{
+    'id':'11',
+    'name':'Dishant',
+    'lastname': 'Patel',
+    'email': 'dish234@gmail.com',
+    'phone': '9328173323',
+    'gender': 'male'
   }]
 };
 

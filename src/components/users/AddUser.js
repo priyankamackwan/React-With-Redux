@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form';
 
 function AddUser({ users }) {
   const navigate  = useNavigate();
+  // intialize form data
   const { register, handleSubmit, watch, formState: { errors } } = useForm({
     defaultValues: {
       name: "",
@@ -20,13 +21,16 @@ function AddUser({ users }) {
     }
   });
   const onSubmit = (data) => {
+    // call function to add user details
     addUser(data,(success) => {
       if(success){
+        // success
         NotificationManager.success('User added successfully!', 'Success');
         navigate('/');
       }
       else
       {
+        // error
         NotificationManager.error('Something went wrong!', 'Error');
       }
     });

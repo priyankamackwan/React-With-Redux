@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 function EditUser(props) {
   const navigate  = useNavigate();
   const dispatch = useDispatch()
-  const { register, handleSubmit, setValue, getValue, reset, watch, formState: { errors } } = useForm({
+  const { register, handleSubmit, setValue, getValue, reset, watch, formState: { errors }, clearErrors } = useForm({
     defaultValues: {
       id:"",
       name: "",
@@ -51,7 +51,7 @@ function EditUser(props) {
   }
   return (
     <>
-      <Modal show={props.show} onHide={props.handleEditModalClose}>
+      <Modal show={props.show} onHide={() => { clearErrors();props.handleEditModalClose(); }}>
         <Modal.Header closeButton>
           <Modal.Title>Edit User Information</Modal.Title>
         </Modal.Header>
