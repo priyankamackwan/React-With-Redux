@@ -1,10 +1,10 @@
 # Follow below instructions to setup project
 
-1) Clone the repo 
+1) Clone the repo: git clone https://github.com/priyankamackwan/React-With-Redux.git
 
 2) Install node packages
 
-cd projectdir 
+cd React-With-Redux 
 npm install
 
 3) Runs the app in the development mode.
